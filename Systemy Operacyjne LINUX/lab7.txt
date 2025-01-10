@@ -1,0 +1,102 @@
+1	
+Ctrl+l
+2	
+Ctrl+r i Ctrl+s
+# uwaga: Ctrl+s często używany też do wstrzymania drukowania znaków na terminalu
+# jeśli nie widzisz wciskanych znaków, wciśnij Ctrl+q
+# aby wyłączyć to zachowanie, wykonaj: 'stty -ixon'
+3	
+Alt+b i Alt+f
+# mogą też działać   Alt+🠄 i Alt+🠆   i/lub   Ctrl+🠄 i Ctlr+🠆
+4	
+Należy wpierw nacisnąć Alt+5, a potem skrót przesuwający o słowo (ten powyżej)
+5	
+Alt+. i Alt+_
+6	
+Należy wpierw nacisnąć Alt+3, a potem skrót słowo z poprzedniego polecenia (ten powyżej)
+7	
+Alt+t
+8	
+vimtutor
+9	
+vimtutor
+10	
+echo '2+2*2' | bc
+11	
+echo 'jakiś tekst' | xxd
+12	
+ls
+ls | cat
+ls | cat -n
+13	
+ps -eF | fold
+14	
+mkfifo p
+fold < p
+ps -eF > p
+15	
+paste <(seq 15) <(seq 15 -1 1) | head -n3
+paste <(seq 15) <(seq 15 -1 1) | tail -n3
+paste <(seq 15) <(seq 15 -1 1) | head -n -3
+paste <(seq 15) <(seq 15 -1 1) | tail -n +4
+paste <(seq 15) <(seq 15 -1 1) | head -n9 | tail -n 4
+16	
+seq 25 > file
+tail -f file
+seq 26 30 >> file
+17	
+seq 75 | grep 5
+seq 75 | grep '5$'
+seq 75 | egrep '5$|0$'
+seq 75 | grep -B3 '33'
+seq 75 | grep -C2 '33'
+18	
+grep 10 /etc/passwd /etc/group
+19	
+grep -R ecdsa ~/.ssh
+20	
+mount | cut -f 5 -d ' '
+cut -f 3 -d ' ' /etc/mtab
+21	
+egrep '^[Ee]{2}' /usr/share/myspell/en_US.dic | cut -f1 -d/
+23	
+cat random_data
+sort random_data
+24	
+sort -k3 random_data
+sort -nk3 random_data
+25	
+sort -k2,2 -k6,6 random_data
+26	sort -k2,2 random_data
+sort -sk2,2 random_data
+# the latter preserves order of lines with identical sort key
+27	
+sort -k2,2 -k3,3n random_data
+28	
+seq 20 | shuf
+29	
+man wc | cat
+man wc | wc
+30	
+wc /etc/motd /etc/SUSE-brand
+31	
+perl -e 'printf "%d\n", (int rand(6)+1)+(int rand(6)+1) for(1..100)' | uniq -cd
+perl -e 'printf "%d\n", (int rand(6)+1)+(int rand(6)+1) for(1..10000)' | sort -n | uniq -c
+32	
+echo -e '1 2 3\n4 5 6\n7 8 9'
+echo -e '1 2 3\n4 5 6\n7 8 9' | rev
+echo -e '1 2 3\n4 5 6\n7 8 9' | tac
+33	
+ls -l | tr '0-9' '-'
+ls -l | tr '[:lower:]' '[:upper:]'
+# or     ls -l | tr 'a-z' 'A-Z'
+ls -l | tr -s ' ' ' '
+ls -l | tr -d 'rwx'
+35	
+less /usr/share/doc/packages/apparmor-docs/techdoc.pdf
+less -L /usr/share/doc/packages/apparmor-docs/techdoc.pdf
+less /usr/share/doc/packages/automake/amhello-1.0.tar.gz
+less /usr/include
+36	
+tree | tee file
+less file

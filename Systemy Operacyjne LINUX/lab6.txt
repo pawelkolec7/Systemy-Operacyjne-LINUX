@@ -1,0 +1,27 @@
+5	
+locate '*/bin'
+locate -b '\bin'
+locate -r '/bin$'
+locate -b -r '^bin$'
+6	
+locate '*/icons/*pause*'
+locate --all /icons/ pause
+…
+7	
+locate '*[*'
+locate -r '\['
+9	
+find /srv /var/lib/zypp
+10	
+find ~ -name "*.xml"
+11	
+find ~ -size 0
+find ~ -empty
+12	
+find -L /usr/include -size -32c -exec cat \{\} \;
+# opcja -L podąża za symlinkami
+13	
+find / -user student ! -path '/home/student/*'
+find / -user student ! -path ~'/*'
+14	
+find ~ ! -perm -g+r

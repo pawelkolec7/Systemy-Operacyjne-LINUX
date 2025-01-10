@@ -1,0 +1,129 @@
+1	
+sleep 2
+2	
+time sleep 2
+3	
+time openssl dhparam -text 1536
+time dd if=/dev/zero of=/dev/null bs=1 count=2M
+time ...
+4	
+timeout 5s openssl dhparam -text 2048
+5	
+ps
+6	
+ps -l
+ps -f
+ps -F
+ps u
+7	
+ps -e
+ps ax
+8	
+ps -T
+# dwa wątki tego samego procesu to dwie linie które mają ten sam pid
+ps -L
+9	
+pstree
+ps -eH
+10	
+pstree -p
+ps -eH
+11	
+cat /proc/self/status
+# informacje o procesie cat
+13	
+top
+# P i M ustawia procesor i pamięć, albo < i > przechodzi między kolumnami
+14	
+# Running, Sleeping, D → zwykle czeka na dane z dysku, t → proces zatrzymany na debugowaniu, Zombie
+15	
+htop
+# < lub > otwiera menu, po potwierdzeniu Enter
+# alternatywnie: kliknąć na nazwie kolumny myszą
+16	
+htop
+# drzewo przełącza F5 i t
+# wyszukuje F3 i /, następny pasujący to F3
+17	
+sleep 1h
+pgrep sleep
+sleep 1h
+pidof sleep
+sleep 1h
+pgrep -f 'sleep 1h'
+18	
+sleep 1337h
+sleep 42h
+pgrep -f '1337h'
+19	
+pgrep 'gdm$'
+pidof gdm
+20	
+sleep 1h
+pgrep sleep
+# lub np. ps -e , pstree -p , htop …
+kill pid
+21	
+sleep 1h
+pkill sleep
+22	
+sleep 1h
+pkill -INT sleep
+sleep 1h
+pkill -QUIT sleep
+sleep 1h
+pkill -KILL sleep
+23	
+# wybrać uruchom z panelu, wpisać mousepad
+pkill -STOP mousepad
+# sprawdzić że mousepad nie reaguje
+pkill -CONT mousepad
+# sprawdzić że mousepad reaguje
+24	
+named -g -c <(:)
+pkill -HUP named
+# named wyświetla że przeładował pliki konfiguracyjne
+25	
+ping -i5 put.poznan.pl&
+# ping będzie spamował terminal swoimi wynikami
+jobs
+fg
+26	
+ping -i5 put.poznan.pl
+Ctrl+z
+sleep 1h
+Ctrl+z
+jobs
+bg %ping
+# lub   bg %-   lub   bg %1
+kill %ping
+kill %sleep
+# lub %1 i %2, lub %- i %-
+27	
+sleep 1h&
+sleep 15s&
+wait %+
+# lub   wait %2   lub   wait '%sleep 15s'
+28	
+nice -n 10 sleep 1h
+ps -el
+# lub htop
+29	
+sleep 1h
+pgrep sleep
+renice 15 pid
+30	
+taskset -pc 0 $$
+openssl dhparam -text $((2**14))
+# ×2
+htop
+# skrótem \ ograniczyć tylko do openssl
+# skrótem F8 zmieniać niceness
+taskset -pc 0 $$
+openssl dhparam -text $((2**14)) foobazbar
+# ×2
+htop
+# skrótem / i F3 znaleźć openssl
+pgrep -f foobazbar
+renice -n 1 pid
+renice -n 2 pid \ ...

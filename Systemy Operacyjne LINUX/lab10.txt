@@ -1,0 +1,187 @@
+Zadanie 1
+echo -e "echo hello world\ndate" > plik
+sh plik
+
+Zadanie 2
+echo 'readlink /proc/$$/exe' > plik
+chmod +x plik
+./plik
+csh
+./plik
+
+Zadanie 4
+hello_world.sh
+#!/bin/sh
+echo hello world
+
+Zadanie 5
+#!/bin/sh
+echo "Drugi argument: $2"
+echo "Czwarty argument: $4"
+
+Zadanie 6
+#!/bin/sh
+echo "\$0: $0"
+echo "\$\$: $$"
+echo "\$#: $#"
+echo "\$@: $@"
+
+Zadanie 8
+#!/bin/sh
+SCRIPTDIR="$(readlink -f "$0")"
+SCRIPTDIR="${SCRIPTDIR%/*}"
+echo "$SCRIPTDIR"
+lub
+
+scriptDir.sh
+#!/bin/sh
+echo "$(dirname $(readlink -e $0))"
+
+Zadanie 9
+#!/bin/sh
+if rm plik
+then
+  echo udało się
+else
+  echo nie udało się
+fi
+
+Zadanie 10
+#!/bin/sh
+if rm "$1"
+then
+  echo udało się
+else
+  echo nie udało się
+fi
+
+Zadanie 11
+#!/bin/sh
+if [ $# -ne 2 ]
+then
+  echo skrypt nie ma dwóch argumentów
+  exit
+fi
+if [ "$1" -lt "$2" ]
+then
+  echo argumenty są w porządku
+else
+  echo pierwszy argument nie jest mniejszy niż drugi
+  exit
+fi
+
+Zadanie 12
+#!/bin/sh
+if [ -f "$1" -a -w "$1" ]
+then
+  date >> "$1"
+else
+  echo "błąd: $1 nie jest zwykłym plikiem lub nie ma praw do zapisów"
+  exit
+fi
+
+Zadanie 13
+#!/bin/sh
+if [ -f "$1" -a -x "$1" ]
+then
+  FIRSTLINE="$(head -n1 "$1")"
+  if [ "$FIRSTLINE" = "#!/bin/sh" ]
+  then
+    echo "$1 jest wykonywalnym skryptem powłoki"
+  fi
+fi
+
+Zadanie 14
+#!/bin/sh
+ 
+if [ ! -f "$1" ]
+then
+  echo "'$1' nie istnieje lub nie jest zwykłym plikiem"
+  exit
+fi
+ 
+if [ ! -x "$1" ]
+then
+  chmod +x "$1"
+fi
+ 
+FIRSTLINE="$(head -n1 "$1")"
+if [ "$FIRSTLINE" != "#!/bin/sh" ]
+then
+  TEMPFILE="$(mktemp -p. || mktemp)"
+  echo '#!/bin/sh' > "$TEMPFILE"
+  cat "$1" >> "$TEMPFILE"
+  chmod --reference="$1" "$TEMPFILE"
+  touch --reference="$1" "$TEMPFILE"
+  mv "$TEMPFILE" "$1"
+fi
+
+Zadanie 15
+#!/bin/sh
+case "${1##*.}" in
+  pdf) pdftotext "$1" -;;
+  zip) unzip -l "$1";;
+  *)   cat "$1";;
+esac
+
+Zadanie 16
+#!/bin/sh
+for VAR in "$@" # 'in "$@"' można pominąć, bo "$@" jest domyślną listą argumentów dla for
+do
+  echo "=== $VAR ==="
+  head -n1 "$VAR"
+  tail -n1 "$VAR"
+done
+
+Zadanie 17
+#!/bin/sh
+for POW in $(seq ${1:-20})
+do
+  echo "2**$POW=$((2**POW))"
+done
+
+Zadanie 18
+#!/bin/sh
+E=1
+V=2
+while ((V<${1:-10000}))
+do
+  echo "2**$E=$V"
+  V=$((V*2))
+  E=$((E+1))
+done
+
+Zadanie 19
+#!/bin/sh
+NUM=0
+while [ -e myProg_$NUM.log ]
+do
+  NUM=$((NUM+1))
+done
+LOG=myProg_$NUM.log
+date > $LOG
+
+Zadanie 20
+#!/bin/sh
+read LINE
+echo "$(date): $LINE" >> log
+
+Zadanie 21
+#!/bin/sh
+read MIN
+while read NUM
+do
+  [ -z "$NUM" ] && break
+  [ "$NUM" -lt "$MIN" ] && MIN="$NUM"
+done
+echo $MIN
+
+Zadanie 22
+#!/bin/bash
+select FILE in /etc/logrotate.d/*
+do
+  [[ $REPLY = q ]] && break
+  [[ $FILE ]] || continue
+  echo "===$FILE==="
+  cat "$FILE"
+done

@@ -1,0 +1,55 @@
+3	
+# naciśnij Ctrl+At+F2
+…
+# naciśnij Ctrl+At+F7
+5	
+cat --help
+bat --help
+6	
+man timeout
+7	
+whatis time
+8	
+man 1 man
+man 7 man
+9	
+man bash
+# będąc w manie:
+/printf
+/dirs
+N
+N
+…
+13	
+ls /usr/share/zoneinfo/
+ls ../../../../../bin
+14	
+ls -a
+ls -a ~
+16	
+pwd
+17	
+cd .config
+ls
+18	
+cd /var/log
+20	
+cd /usr/bin
+ls *cat
+21	
+ls /usr/bin/*cat
+22	
+ls /usr/bin/??
+cd /usr/bin/
+ls ??
+23	
+ls /usr/share/zoneinfo/*
+24	
+ls /usr/share/zoneinfo/*/UTC
+25	
+ls /usr/share/zoneinfo/*/L*
+26	
+ls /usr/share/zoneinfo/*/[FH]*
+27	
+# bash przrobił ls* na tekst "ls lsattr lsblk lscpu …"
+# a następnie wykonał "ls" z argumentami "lsattr lsblk lscpu …"

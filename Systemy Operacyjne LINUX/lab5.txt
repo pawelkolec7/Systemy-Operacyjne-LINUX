@@ -1,0 +1,63 @@
+1	
+cat /etc/motd
+cat /etc/SUSE-brand /etc/os-release
+2	
+cat
+foo
+baz
+# naciśnij Ctrl+d
+3	
+cat /usr/share/doc/mpich/user.pdf
+cat -v /usr/share/doc/mpich/user.pdf
+4	
+paste /etc/os-release /etc/os-release
+5	
+column -t /etc/mtab
+column -ts: /etc/passwd
+6	
+hexdump -C /usr/share/themes/Breeze/assets/line-h.png
+9	
+seq 15
+10	
+seq 64 64 1024
+11	
+date > plik
+12	
+date >> plik
+13	
+cat /etc/motd /etc/shadow 2> plik
+14	
+find /var/spool/ 2> /dev/null
+15	
+find /var/spool/ > out 2> err
+16	
+find /var/spool/ &> out_and_err
+17	
+echo 'print("hello " + __file__)' > plik
+python < plik
+# porównaj z   python plik
+18	
+hexdump -C << EOF
+foo
+baz
+bar€and®foobar
+EOF
+19	
+bc
+sqrt(2.0000)
+quit
+bc <<< 'sqrt(2.0000)'
+20	
+bc <<< 'sqrt(2.0000)' > plik
+21	
+cat /etc/motd >&-
+find /var/spool/ 2>&-
+22	
+cat /etc/motd /etc/shadow > plik 2>& 1
+23	
+cp /etc/services .
+hexdump <>services 1>&0
+# hexdump czyta porcję danych, pisze do (środka) pliku porcję swojego wyjścia,
+# i powtarza to aż przetworzycały plik
+24	
+cat /etc/motd /etc/shadow 3>&1 1>&2 2>&3 | rev

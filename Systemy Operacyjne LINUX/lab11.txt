@@ -1,0 +1,68 @@
+Zadanie 1
+user@host ~ $ myFunction(){ echo "Hello world!"; }
+user@host ~ $ myFunction
+Hello world!
+
+Zadanie 2
+user@host ~ $ repeatText(){ for I in $(seq $1); do echo "$2"; done; }
+user@host ~ $ repeatText 3 "Example text."
+Example text.
+Example text.
+Example text.
+
+Zadanie 3
+user@host ~ $ makeAPrivateFile()(umask 077; [ -e "$1" ] || touch "$1")
+user@host ~ $ ls -la file file2
+ls: nie ma dostępu do 'file2': Nie ma takiego pliku ani katalogu
+-rw-r--r-- 1 so users 0 05-14 13:45 file
+user@host ~ $ makeAPrivateFile file
+user@host ~ $ makeAPrivateFile file2
+user@host ~ $ ls -la file file2
+-rw-r--r-- 1 so users 0 05-14 13:45 file
+-rw------- 1 so users 0 06-04 12:24 file2
+
+Zadanie 4
+myTree(){
+  ls -A "$1" 2>/dev/null | while read F
+    do
+      echo "$2$F"
+      [ ! -L "$1/$F" -a -d "$1/$F" ] && myTree "$1/$F" "  $2"
+    done
+}
+
+Zadanie 5
+factorial(){
+  if [ "$1" -eq 1 ]
+  then
+    echo 1;
+  else
+    echo $(( "$1" * $(factorial $(("$1" - 1)) ) ))
+  fi
+}
+
+Zadanie 6
+#!/bin/bash
+trap "echo \"Otrzymano sygnał INT\"" INT
+sleep 10s
+echo "Gotowe"
+
+Zadanie 7
+#!/bin/bash
+TMPFILE="$(mktemp)"
+echo "Plik tymczasowy: $TMPFILE"
+trap "echo \"Usuwam plik tymczasowy\"; rm \"$TMPFILE\"" EXIT
+sleep 10s
+echo "Gotowe"
+
+Zadanie 11
+yes | rm -i plik_?
+
+Zadanie 14
+seq -w 999 | xargs mkdir
+
+Zadanie 15
+locate '/usr/share/*.pdf' | xargs md5sum
+locate '/usr/share/*.pdf' | while read F; do md5sum "$F"; done
+
+Zadanie 16
+grep -lR 'typedef signed char' /usr/include | xargs -I SRC cp -v SRC /tmp

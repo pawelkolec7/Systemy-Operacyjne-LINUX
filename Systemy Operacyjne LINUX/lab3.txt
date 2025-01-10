@@ -1,0 +1,126 @@
+1	
+whoami
+2	
+groups
+groups student
+id
+id student
+3	
+id
+getent passwd twoja_nazwa_użytkownika
+# uid to trzecie, a gid to czwarte pole
+4	
+w -n
+5	
+last -wn 10
+# wyświetla 10 ostatnich logowań
+6	
+last root
+7	
+last --present '2023-03-03 13:30'
+8	
+write nazwa_użytkownika
+wiadomość
+Ctrl+d
+9	
+su
+exit
+# lub Ctrl+d
+su user5
+exit
+10	
+ls -ld ~ ~/.ssh ~/.bash_history /etc/passwd /etc/shadow /tmp /usr/bin/passwd /usr/bin/write
+stat ~ ~/.ssh ~/.bash_history /etc/passwd /etc/shadow /tmp /usr/bin/passwd /usr/bin/write
+# zadanie pokazuje użycie w praktyce praw dostępu; zastanów się dlaczego są takie jak widać
+11	
+ls -l /var/run /dev/sda /dev/nvme0n1 /dev/null /run/initctl /run/rpcbind.sock
+stat /var/run /dev/sda /dev/nvme0n1 /dev/null /run/initctl /run/rpcbind.sock
+# zadanie pokazuje możliwe typy plików (poza zwykłym plikiem i katalogiem)
+12	
+fortune > plik1
+chmod go-r plik1
+su user2
+cat plik1
+exit
+su user3
+cat plik1
+exit
+fortune > plik1
+chmod go-r plik1
+su user2 -c "cat plik1"
+su user3 -c "cat plik1"
+13	
+fortune > plik2
+chmod 640 plik2
+# sprawdzenie jak powyżej
+14	
+fortune > plik3
+chmod o-r plik3
+# albo: chmod u=rw,g=r,o= plik3
+15	
+chgrp left plik3
+16	
+fortune > plik4
+chmod 604 plik4
+# sprawdzenie jak w 31
+17	
+mkdir dir1
+fortune > dir1/a
+chmod -x dir1
+ls dir1
+cd dir1
+cat dir1/a
+18	
+chmod u=rwx,go=rx dir1
+su user2
+cat dir1/a
+ls dir1
+exit
+chmod go-r dir1
+# powtórz cat i ls z user2
+19	
+mkdir dir2
+cd dir2
+touch a b
+chmod go-r b
+su user2
+rm a
+rm b
+exit
+20	
+cd ~/dir2
+su user2
+mkdir d1 d2
+touch d2/f
+exit
+rm -r d1
+rm -r d2
+21	
+cd ~/dir2
+mv d2 foo
+mv foo ~
+cd ..
+mkdir dir3
+mv dir2 dir3
+22	
+mkdir dir4
+fortune > plik5
+fortune > dir4/f
+chmod -R 0 dir4 plik5
+su
+cat plik5
+cd dir4
+cat f
+exit
+23	
+su
+chown user2 plik1
+chown :www-data plik2
+exit
+24	
+stat /var/log/wtmp
+# zwróć uwagę na datę dostępu przed datą modyfikacji
+25	
+touch ~
+26	
+touch -d '13:30 PDT Saturday month ago' plik

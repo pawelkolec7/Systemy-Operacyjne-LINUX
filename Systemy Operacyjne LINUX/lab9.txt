@@ -1,0 +1,96 @@
+1	
+VAR=tekst
+echo $VAR
+2	
+OTHER=$VAR
+echo $OTHER
+3	
+PROG=ls
+ARG=/tmp
+$PROG $ARG
+4	
+echo $PATH
+echo $HOME
+…
+5	
+LANG=ja_JP.UTF-8
+date
+vim
+    :q
+LANG=de_DE.UTF-8
+rm -rf /root/.ssh/nope
+lscpu
+6	
+PS1="\w> "
+PS1="\[\e[1;30m\][\[\e[33m\]\u\[\e[30m\]@\[\e[34m\]\h\[\e[0;1m\] \w\[\e[30m\]]\$\[\e[0m\] "
+# (w sieci jest dużo generatorów znaków zachęty)
+7	
+lspci
+PATH="/sbin:/usr/sbin:$PATH"
+lspci
+8	
+rm plik && echo udało się
+9	
+rm plik || echo nie udało się udało się
+10	
+(uname -a; date)|wc -c \\
+{ uname -a; date; }|wc -c
+11	
+X=1
+( X=2 )
+echo $X
+{ X=3; }
+echo $X
+12	
+(sleep 5; fortune) &
+{ sleep 5; fortune ; } &
+13
+touch plik_{1..9}
+15	
+stat /var/log/{b,m,w}tmp
+16	
+echo ~
+17	
+cd ~wwwrun
+18
+19	
+FILE=plik
+mv "$FILE" "$FILE.txt"
+20	
+LOGFILE=myprog_${M}_$D.log
+echo hello world > $LOGFILE
+21	
+mv file1 file2 ${TARGET:-/tmp}
+22	
+S="/home/user/some dir/some file.sh"
+D="${S%/*}"
+F="${S##*/}"
+echo -e "Dir is: '$D'\nFile is: '$F'"
+23	
+mv "$F" ${F// /_}
+24	
+echo "W bieżącym katalogu znajduje się $(ls | wc -l) plików"
+25	
+DIR="$(readlink -f ..)"
+DIR="$(realpath ..)"
+26	
+pstree -au > procesy_$(date +%H_%M_%S).log
+27	
+mv "$F" "$(iconv -t ascii//TRANSLIT <<< "$F")"
+28	
+X=42
+Y=42
+X=$((X+1))
+Y=$((Y+2))
+Z=$((X*Y))
+echo $((Z%128))
+let X=42 Y=42
+let X++ Y+=2
+let Z=X*Y
+echo $((Z%128))
+# nadużywając składni można:   echo $((X=43, Y=42, X=X+1, Y=Y+2, Z=X*Y, Z%128))
+29	
+START=$(date +%s%N); sleep 1; END=$(date +%s%N); echo $((END-START))
+30	
+alias year="cal -my"
+year 2025

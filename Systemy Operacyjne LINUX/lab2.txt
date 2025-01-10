@@ -1,0 +1,79 @@
+1	
+mkdir foo
+mkdir foo/baz
+…
+mkdir -p foo/baz/bar foo/bar foobaz/bar
+2	
+rmdir foo/baz/bar
+rmdir foo/baz
+3	
+echo "foo" > plik1
+ln plik1 plik2
+echo "bar" > plik2
+cat plik1
+4	
+cd
+ln -s /tmp TMP
+cd TMP
+pwd
+5	
+# druga kolumna wyników ls -l
+ln -s /tmp ~/TMP
+cd ~/TMP
+pwd
+6	
+cd
+ln -s . loop
+cd loop
+cd loop
+pwd
+7	
+ln -s /sciezka/ktora/nie/istnieje brokenSymlink
+ls -l
+8	
+cp /etc/os-release /etc/SUSE-brand .
+10	
+cp -a someDir newDir
+11	
+mv newDir someDir
+12	
+mv someDir anotherDir
+13	
+cp -al anotherDir yetAnotherDir
+echo "modified" > yetAnotherDir/plik2
+tree -D --timefmt=%H:%M:%S anotherDir yetAnotherDir
+# plików anotherDir/plik2 i yetAnotherDir/plik2
+14	
+cd /tmp
+touch example
+scp example student@lab-os-1:example
+cd /tmp
+touch example
+scp example student@lab-os-1:
+15	
+scp /tmp/example student@lab-os-1:/tmp
+16	
+cd /tmp
+sftp student@lab-os-1
+sftp> cd /tmp
+sftp> put example
+sftp student@lab-os-1
+sftp> cd /tmp
+sftp> put /tmp/example
+sftp student@lab-os-1
+sftp> cd /tmp
+sftp> lcd /tmp
+sftp> put example
+17	
+touch file_{a..z}
+rm file_?
+touch file_{a..z}
+rm -f file_?
+…
+18	
+rm file_?
+rm -f file_?
+19	
+mkdir someDir
+rm -r someDir
+
